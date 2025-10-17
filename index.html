@@ -1,3 +1,15 @@
+コード内のコメントにある通り、既存のカード（商品1と商品2）を雛形として、ベスト10まで複製し、それぞれの内容（順位、タイトル、説明、評価、リボン）を適当に変更します。
+
+以下の変更を施したHTMLコードを提示します。
+
+1.  既存のカード（1位と2位）を複製し、10位まで作成します。
+2.  順位を示す`.rank-circle`内の数字を1から10まで更新します。
+3.  `.ribbon`の内容、色（`style="background:..."`）、商品名（`.title`）、評価（`.score .num`、`.score .label`）、商品詳細（`.desc`）などを適当に**変更・追加**します。
+4.  画像（`.thumb img`の`src`属性）やロゴ（`.store-logo`の`src`属性）も適当なプレースホルダー画像URLに変更またはそのまま使用します。
+
+<!-- end list -->
+
+```html
 <!doctype html>
 <html lang="ja">
 <head>
@@ -147,11 +159,6 @@ body { font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "メ�
 /* small meta (例: 最終更新日など) */
 .meta { font-size:12px; color:#777; }
 
-/* 下に同じカードがいくつも並んで見えるように */
-.product-list .product-card + .product-card {
-  margin-top: 0; /* grid gapで制御されるので不要 */
-}
-
 /* optional: クリック可能に見せる */
 .product-card a.card-link { color:inherit; text-decoration:none; display:block; }
 
@@ -168,14 +175,12 @@ body { font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "メ�
 
 <div class="product-list">
 
-  <!-- ---------- カード（例） ---------- -->
   <article class="product-card" aria-label="商品1">
     <div class="ribbon" aria-hidden="true">🏆 ベストチョイス</div>
     <div class="rank-circle" aria-hidden="true">1</div>
 
     <div class="card-inner">
       <div class="thumb">
-        <!-- 実際は自分の画像URLに置き換えてください -->
         <img src="https://images.unsplash.com/photo-1602524816631-1d3966f5b3d5?w=800&q=80&auto=format&fit=crop" alt="セットの画像">
       </div>
 
@@ -205,9 +210,6 @@ body { font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "メ�
       </div>
     </div>
   </article>
-  <!-- ---------- /カード ---------- -->
-
-  <!-- 繰り返しカード（2） -->
   <article class="product-card" aria-label="商品2">
     <div class="ribbon" style="background:#f2a654;">💲 最もお得</div>
     <div class="rank-circle">2</div>
@@ -243,9 +245,288 @@ body { font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "メ�
       </div>
     </div>
   </article>
+  <article class="product-card" aria-label="商品3">
+    <div class="ribbon" style="background:#555;">✨ 売れ筋</div>
+    <div class="rank-circle">3</div>
 
-  <!-- 必要な分だけカードを複製して並べる -->
-</div>
+    <div class="card-inner">
+      <div class="thumb">
+        <img src="https://images.unsplash.com/photo-1510926593503-b7787c8008a0?w=800&q=80&auto=format&fit=crop" alt="白物家電セットの画像">
+      </div>
+
+      <div class="info">
+        <div style="display:flex;align-items:flex-start;gap:10px;">
+          <div style="flex:1;">
+            <div class="title">Panasonic 一人暮らし向け高品質4点セット</div>
+            <div class="meta" style="margin-top:6px;">最終更新日 2025-10-15</div>
+          </div>
+
+          <div class="rating" aria-hidden="true">
+            <div class="score">
+              <div class="num">9.5</div>
+              <div class="label">優秀</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="desc">
+          パナソニックの冷蔵庫、洗濯機、電子レンジ、クリーナーの4点。デザインと機能性を両立。
+        </div>
+
+        <div class="card-footer">
+          <a class="btn" href="#" role="button">価格確認</a>
+          <img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Yahoo%21_JAPAN.svg" alt="Yahoo!ショッピング ロゴ">
+        </div>
+      </div>
+    </div>
+  </article>
+  <article class="product-card" aria-label="商品4">
+    <div class="ribbon" style="background:#30a7d9;">🌱 コンパクト</div>
+    <div class="rank-circle">4</div>
+
+    <div class="card-inner">
+      <div class="thumb">
+        <img src="https://images.unsplash.com/photo-1543781744-f174e9e51c86?w=800&q=80&auto=format&fit=crop" alt="小型セットの画像">
+      </div>
+
+      <div class="info">
+        <div style="display:flex;align-items:flex-start;gap:10px;">
+          <div style="flex:1;">
+            <div class="title">ヤマダセレクト 小型家電3点ミニマムセット</div>
+            <div class="meta" style="margin-top:6px;">最終更新日 2025-10-01</div>
+          </div>
+
+          <div class="rating" aria-hidden="true">
+            <div class="score">
+              <div class="num">9.4</div>
+              <div class="label">満足</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="desc">
+          スペースが限られた部屋に最適。冷蔵庫85L、洗濯機4.5kg、電子レンジ15L。
+        </div>
+
+        <div class="card-footer">
+          <a class="btn" href="#" role="button">価格確認</a>
+          <img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Logo-楽天市場.svg" alt="楽天ロゴ">
+        </div>
+      </div>
+    </div>
+  </article>
+  <article class="product-card" aria-label="商品5">
+    <div class="ribbon" style="background:#0b5a86;">🎨 デザイン賞</div>
+    <div class="rank-circle">5</div>
+
+    <div class="card-inner">
+      <div class="thumb">
+        <img src="https://images.unsplash.com/photo-1616766488730-802c63261274?w=800&q=80&auto=format&fit=crop" alt="スタイリッシュなセットの画像">
+      </div>
+
+      <div class="info">
+        <div style="display:flex;align-items:flex-start;gap:10px;">
+          <div style="flex:1;">
+            <div class="title">無印良品風 シンプルモダン家電セット</div>
+            <div class="meta" style="margin-top:6px;">最終更新日 2025-10-10</div>
+          </div>
+
+          <div class="rating" aria-hidden="true">
+            <div class="score">
+              <div class="num">9.3</div>
+              <div class="label">高評価</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="desc">
+          白とグレーで統一されたスタイリッシュなデザイン。家電をインテリアに合わせたい方に。
+        </div>
+
+        <div class="card-footer">
+          <a class="btn" href="#" role="button">価格確認</a>
+          <img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon ロゴ">
+        </div>
+      </div>
+    </div>
+  </article>
+  <article class="product-card" aria-label="商品6">
+    <div class="ribbon" style="background:#777;">⭐ 定番</div>
+    <div class="rank-circle">6</div>
+
+    <div class="card-inner">
+      <div class="thumb">
+        <img src="https://images.unsplash.com/photo-1617469792476-d98305c45b85?w=800&q=80&auto=format&fit=crop" alt="基本的なセットの画像">
+      </div>
+
+      <div class="info">
+        <div style="display:flex;align-items:flex-start;gap:10px;">
+          <div style="flex:1;">
+            <div class="title">ハイセンス ベーシック家電3点セット</div>
+            <div class="meta" style="margin-top:6px;">最終更新日 2025-10-05</div>
+          </div>
+
+          <div class="rating" aria-hidden="true">
+            <div class="score">
+              <div class="num">9.2</div>
+              <div class="label">満足</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="desc">
+          必要十分な機能を備えた冷蔵庫、洗濯機、電子レンジのセット。初めての一人暮らしに。
+        </div>
+
+        <div class="card-footer">
+          <a class="btn" href="#" role="button">価格確認</a>
+          <img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Yahoo%21_JAPAN.svg" alt="Yahoo!ショッピング ロゴ">
+        </div>
+      </div>
+    </div>
+  </article>
+  <article class="product-card" aria-label="商品7">
+    <div class="ribbon" style="background:#cc0000;">🔥 限定セット</div>
+    <div class="rank-circle">7</div>
+
+    <div class="card-inner">
+      <div class="thumb">
+        <img src="https://images.unsplash.com/photo-1546700010-61889c2049e2?w=800&q=80&auto=format&fit=crop" alt="多機能なセットの画像">
+      </div>
+
+      <div class="info">
+        <div style="display:flex;align-items:flex-start;gap:10px;">
+          <div style="flex:1;">
+            <div class="title">高機能炊飯器付き！新生活応援4点セット</div>
+            <div class="meta" style="margin-top:6px;">最終更新日 2025-10-17</div>
+          </div>
+
+          <div class="rating" aria-hidden="true">
+            <div class="score">
+              <div class="num">9.0</div>
+              <div class="label">良い</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="desc">
+          冷蔵庫、洗濯機、電子レンジ、そしてIH圧力炊飯器の豪華4点。料理を楽しみたい方に。
+        </div>
+
+        <div class="card-footer">
+          <a class="btn" href="#" role="button">価格確認</a>
+          <img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon ロゴ">
+        </div>
+      </div>
+    </div>
+  </article>
+  <article class="product-card" aria-label="商品8">
+    <div class="ribbon" style="background:#555;">⭐ 定番</div>
+    <div class="rank-circle">8</div>
+
+    <div class="card-inner">
+      <div class="thumb">
+        <img src="https://images.unsplash.com/photo-1546700010-61889c2049e2?w=800&q=80&auto=format&fit=crop" alt="多機能なセットの画像">
+      </div>
+
+      <div class="info">
+        <div style="display:flex;align-items:flex-start;gap:10px;">
+          <div style="flex:1;">
+            <div class="title">シャープ製 単身用家電3点セット</div>
+            <div class="meta" style="margin-top:6px;">最終更新日 2025-10-12</div>
+          </div>
+
+          <div class="rating" aria-hidden="true">
+            <div class="score">
+              <div class="num">8.9</div>
+              <div class="label">まずまず</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="desc">
+          冷蔵庫、洗濯機、電子レンジの基本的なセット。国内メーカーの安心感。
+        </div>
+
+        <div class="card-footer">
+          <a class="btn" href="#" role="button">価格確認</a>
+          <img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Logo-楽天市場.svg" alt="楽天ロゴ">
+        </div>
+      </div>
+    </div>
+  </article>
+  <article class="product-card" aria-label="商品9">
+    <div class="ribbon" style="background:#f2a654;">💲 お買い得</div>
+    <div class="rank-circle">9</div>
+
+    <div class="card-inner">
+      <div class="thumb">
+        <img src="https://images.unsplash.com/photo-1543781744-f174e9e51c86?w=800&q=80&auto=format&fit=crop" alt="小型セットの画像">
+      </div>
+
+      <div class="info">
+        <div style="display:flex;align-items:flex-start;gap:10px;">
+          <div style="flex:1;">
+            <div class="title">極限までコストを抑えたミニマム2点セット</div>
+            <div class="meta" style="margin-top:6px;">最終更新日 2025-09-01</div>
+          </div>
+
+          <div class="rating" aria-hidden="true">
+            <div class="score">
+              <div class="num">8.7</div>
+              <div class="label">許容範囲</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="desc">
+          冷蔵庫と電子レンジのみのセット。洗濯機はコインランドリー利用予定など、割り切った選択肢。
+        </div>
+
+        <div class="card-footer">
+          <a class="btn" href="#" role="button">価格確認</a>
+          <img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Yahoo%21_JAPAN.svg" alt="Yahoo!ショッピング ロゴ">
+        </div>
+      </div>
+    </div>
+  </article>
+  <article class="product-card" aria-label="商品10">
+    <div class="ribbon" style="background:#30a7d9;">🌱 コンパクト</div>
+    <div class="rank-circle">10</div>
+
+    <div class="card-inner">
+      <div class="thumb">
+        <img src="https://images.unsplash.com/photo-1510926593503-b7787c8008a0?w=800&q=80&auto=format&fit=crop" alt="白物家電セットの画像">
+      </div>
+
+      <div class="info">
+        <div style="display:flex;align-items:flex-start;gap:10px;">
+          <div style="flex:1;">
+            <div class="title">中堅メーカー4点セット（中古・リフレッシュ品）</div>
+            <div class="meta" style="margin-top:6px;">最終更新日 2025-10-14</div>
+          </div>
+
+          <div class="rating" aria-hidden="true">
+            <div class="score">
+              <div class="num">8.5</div>
+              <div class="label">妥協点</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="desc">
+          初期費用を抑えたい方向け。動作保証付きのリフレッシュ家電で揃えた洗濯機、冷蔵庫、レンジ、掃除機のセット。
+        </div>
+
+        <div class="card-footer">
+          <a class="btn" href="#" role="button">価格確認</a>
+          <img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/4/44/Logo-楽天市場.svg" alt="楽天ロゴ">
+        </div>
+      </div>
+    </div>
+  </article>
+  </div>
 
 </body>
 </html>
+```
