@@ -1,520 +1,352 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link rel="icon" type="image/x-icon" href='afi/img/LiB_logo.png' />
 <title>商品カード一覧サンプル</title>
-<style>
-/* リセット（簡易） */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "メイリオ", sans-serif; background:#f5f6f8; color:#111; line-height:1.4; padding:16px; }
-
-/* カード全体のコンテナ */
-.product-list { display: grid; gap:16px; }
-
-/* 単一カード */
-.product-card {
-  background: #fff;
-  border-radius:12px;
-  box-shadow: 0 6px 18px rgba(15,20,30,0.06);
-  overflow: hidden;
-  position: relative;
-  padding: 14px;
-}
-
-/* リボン（左上） */
-.ribbon {
-  position: absolute;
-  left: 12px;
-  top: 12px;
-  background: #ff7b6b;
-  color: #fff;
-  font-weight:700;
-  font-size:13px;
-  padding:6px 10px;
-  border-radius: 8px;
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
-
-/* ランク丸（左丸に数字） */
-.rank-circle {
-  position: absolute;
-  left: 10px;
-  top: calc(12px + 36px); /* リボンの下に小さく表示 */
-  width:30px; height:30px;
-  background: #fff;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:700;
-  color:#333;
-  box-shadow:0 2px 6px rgba(0,0,0,0.08);
-  font-size:14px;
-}
-
-/* 内部レイアウト：左に画像、右にテキスト（モバイルは縦並び） */
-.card-inner {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap:12px;
-  align-items: start;
-}
-
-/* サムネイルと右の情報を横並びにするブロークポイント */
-@media (min-width:720px) {
-  .card-inner { grid-template-columns: 140px 1fr; gap:18px; }
-}
-
-/* 画像エリア */
-.thumb {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  background: #eee;
-  border-radius:10px;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.thumb img { width:100%; height:100%; object-fit:cover; display:block; }
-
-/* 右側情報 */
-.info { display:flex; flex-direction:column; gap:8px; position: relative; }
-
-/* 商品タイトル */
-.title {
-  font-size:16px;
-  font-weight:700;
-  color:#111;
-}
-
-/* 商品説明（小さめ、2行で切る） */
-.desc {
-  font-size:13px;
-  color:#444;
-  display:-webkit-box;
-  -webkit-line-clamp:2;
-  -webkit-box-orient:vertical;
-  overflow:hidden;
-}
-
-/* 評価ボックス（右上などに表示） */
-.rating {
-  position: absolute;
-  right: 0;
-  top: 0;
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.rating .score {
-  width:72px; height:72px;
-  border-radius:12px;
-  background: #fff;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  box-shadow: 0 6px 18px rgba(15,20,30,0.06);
-  text-align:center;
-  padding:8px;
-}
-.score .num { font-weight:800; font-size:20px; color:#0b5a86; }
-.score .label { font-size:12px; color:#666; margin-top:4px; }
-
-/* ボタンやフッター */
-.card-footer {
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-top:6px;
-}
-.btn {
-  background:#ff5252;
-  color:#fff;
-  padding:10px 14px;
-  border-radius:10px;
-  font-weight:700;
-  text-decoration:none;
-  display:inline-block;
-}
-.store-logo { height:24px; opacity:0.95; }
-
-/* small meta (例: 最終更新日など) */
-.meta { font-size:12px; color:#777; }
-
-/* optional: クリック可能に見せる */
-.product-card a.card-link { color:inherit; text-decoration:none; display:block; }
-
-/* 微調整：評価をモバイルではカード下に行かせる */
-@media (max-width:719px) {
-  .rating { position: static; justify-content:flex-end; }
-  .score { width:60px; height:60px; border-radius:10px; }
-}
-</style>
+<link href="main_style_fixed.css" rel="stylesheet"/>
+<link href="hozon_style.css" rel="stylesheet"/>
 </head>
 <body>
+<header>
+<div class="logo">
+<a href="https://example.com"><img height="40" src="afi/img/LiB_header.png" width="70"/></a>
+</div>
+</header>
+
+
+<div id="vote-container">
+    <h2>🎉 あなたが選ぶ人気ジャンルは？ (複数選択可) 🎉</h2>
+
+    <div id="vote-form">
+        </div>
+
+    <button id="submit-vote">投票を決定する</button>
+
+    <div id="vote-message" class="vote-message" style="display: none;">
+        投票ありがとうございます！現在の集計結果です。
+    </div>
+
+    <div id="results-container">
+        </div>
+</div>
+
 
 <h1 style="font-size:18px;margin-bottom:12px;">Amazonで買える！一人暮らしにおすすめの食べ物・飲み物ベスト10</h1>
-
 <div class="product-list">
-
-  <article class="product-card" aria-label="商品1">
-    <div class="ribbon" aria-hidden="true">🏆 ストック必需品</div>
-    <div class="rank-circle" aria-hidden="true">1</div>
-
-    <div class="card-inner">
-      <div class="thumb">
-        <img src="https://images.unsplash.com/photo-1549419163-f187d90d8050?w=800&q=80&auto=format&fit=crop" alt="レトルトご飯の画像">
-      </div>
-
-      <div class="info">
-        <div style="display:flex;align-items:flex-start;gap:10px;">
-          <div style="flex:1;">
-            <div class="title">サトウのごはん パックご飯 200g×20個</div>
-            <div class="meta" style="margin-top:6px;">最終更新日 2025-10-16</div>
-          </div>
-
-          <div class="rating" aria-hidden="true">
-            <div class="score">
-              <div class="num">9.9</div>
-              <div class="label">卓越した</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="desc">
+<div class="container">
+<div class="main-content">
+<article aria-label="商品1" class="product-card">
+<div aria-hidden="true" class="ribbon">🏆 ストック必需品</div>
+<div aria-hidden="true" class="rank-circle">1</div>
+<div class="card-inner">
+<div class="thumb">
+<img alt="レトルトご飯の画像" src="https://images.unsplash.com/photo-1549419163-f187d90d8050?w=800&amp;q=80&amp;auto=format&amp;fit=crop" url="https://amzn.to/3JdvFOe"/>
+</div>
+<div class="info">
+<div style="display:flex;align-items:flex-start;gap:10px;">
+<div style="flex:1;">
+<div class="title">サトウのごはん パックご飯 200g×20個</div>
+<div class="meta" style="margin-top:6px;">最終更新日 2025-10-16</div>
+</div>
+<div aria-hidden="true" class="rating">
+<div class="score">
+<div class="num">9.9</div>
+<div class="label">卓越した</div>
+</div>
+</div>
+</div>
+<div class="desc">
           電子レンジで2分。ご飯を炊く手間がなく、まとめて買えば買い出しの回数も減る。一人暮らしの最強の味方。
         </div>
-
-        <div class="card-footer">
-          <a class="btn" href="#" role="button">価格確認</a>
-          <img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon ロゴ">
-        </div>
-      </div>
-    </div>
-  </article>
-  <article class="product-card" aria-label="商品2">
-    <div class="ribbon" style="background:#f2a654;">💧 最もお得</div>
-    <div class="rank-circle">2</div>
-
-    <div class="card-inner">
-      <div class="thumb">
-        <img src="https://images.unsplash.com/photo-1553380481-996459f270b2?w=800&q=80&auto=format&fit=crop" alt="水のペットボトルの画像">
-      </div>
-
-      <div class="info">
-        <div style="display:flex;align-items:flex-start;gap:10px;">
-          <div style="flex:1;">
-            <div class="title">アサヒ 飲料 富士山のバナジウム天然水 2L×9本</div>
-            <div class="meta" style="margin-top:6px;">最終更新日 2025-10-15</div>
-          </div>
-
-          <div class="rating" aria-hidden="true">
-            <div class="score">
-              <div class="num">9.7</div>
-              <div class="label">とても良い</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="desc">
+<div class="card-footer">
+<a class="btn" href="#" role="button">価格確認</a>
+<img alt="Amazon ロゴ" class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"/>
+</div>
+</div>
+</div>
+</article>
+<article aria-label="商品2" class="product-card">
+<div class="ribbon" style="background:#f2a654;">💧 最もお得</div>
+<div class="rank-circle">2</div>
+<div class="card-inner">
+<div class="thumb">
+<img alt="水のペットボトルの画像" src="https://images.unsplash.com/photo-1553380481-996459f270b2?w=800&amp;q=80&amp;auto=format&amp;fit=crop"/>
+</div>
+<div class="info">
+<div style="display:flex;align-items:flex-start;gap:10px;">
+<div style="flex:1;">
+<div class="title">アサヒ 飲料 富士山のバナジウム天然水 2L×9本</div>
+<div class="meta" style="margin-top:6px;">最終更新日 2025-10-15</div>
+</div>
+<div aria-hidden="true" class="rating">
+<div class="score">
+<div class="num">9.7</div>
+<div class="label">とても良い</div>
+</div>
+</div>
+</div>
+<div class="desc">
           重い水を玄関まで届けてくれるのが最大の魅力。ミネラルウォーターを常備したい人に最適。
         </div>
-
-        <div class="card-footer">
-          <a class="btn" href="#" role="button">価格確認</a>
-          <img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon ロゴ">
-        </div>
-      </div>
-    </div>
-  </article>
-  <article class="product-card" aria-label="商品3">
-    <div class="ribbon" style="background:#555;">🍜 非常食にも</div>
-    <div class="rank-circle">3</div>
-
-    <div class="card-inner">
-      <div class="thumb">
-        <img src="https://images.unsplash.com/photo-1547466547-2c97693d4085?w=800&q=80&auto=format&fit=crop" alt="カップラーメンの画像">
-      </div>
-
-      <div class="info">
-        <div style="display:flex;align-items:flex-start;gap:10px;">
-          <div style="flex:1;">
-            <div class="title">日清 カップヌードル 20種アソートセット</div>
-            <div class="meta" style="margin-top:6px;">最終更新日 2025-10-14</div>
-          </div>
-
-          <div class="rating" aria-hidden="true">
-            <div class="score">
-              <div class="num">9.5</div>
-              <div class="label">優秀</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="desc">
+<div class="card-footer">
+<a class="btn" href="#" role="button">価格確認</a>
+<img alt="Amazon ロゴ" class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"/>
+</div>
+</div>
+</div>
+</article>
+<article aria-label="商品3" class="product-card">
+<div class="ribbon" style="background:#555;">🍜 非常食にも</div>
+<div class="rank-circle">3</div>
+<div class="card-inner">
+<div class="thumb">
+<img alt="カップラーメンの画像" src="https://images.unsplash.com/photo-1547466547-2c97693d4085?w=800&amp;q=80&amp;auto=format&amp;fit=crop"/>
+</div>
+<div class="info">
+<div style="display:flex;align-items:flex-start;gap:10px;">
+<div style="flex:1;">
+<div class="title">日清 カップヌードル 20種アソートセット</div>
+<div class="meta" style="margin-top:6px;">最終更新日 2025-10-14</div>
+</div>
+<div aria-hidden="true" class="rating">
+<div class="score">
+<div class="num">9.5</div>
+<div class="label">優秀</div>
+</div>
+</div>
+</div>
+<div class="desc">
           夜食や手間をかけたくない日の定番。飽きがこないアソートセットで非常時にも役立つ。
         </div>
-
-        <div class="card-footer">
-          <a class="btn" href="#" role="button">価格確認</a>
-          <img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon ロゴ">
-        </div>
-      </div>
-    </div>
-  </article>
-  <article class="product-card" aria-label="商品4">
-    <div class="ribbon" style="background:#30a7d9;">💪 健康維持</div>
-    <div class="rank-circle">4</div>
-
-    <div class="card-inner">
-      <div class="thumb">
-        <img src="https://images.unsplash.com/photo-1571018931168-d06e2e28a559?w=800&q=80&auto=format&fit=crop" alt="プロテインの画像">
-      </div>
-
-      <div class="info">
-        <div style="display:flex;align-items:flex-start;gap:10px;">
-          <div style="flex:1;">
-            <div class="title">ザバス ホエイプロテイン100 リッチショコラ味 100食分</div>
-            <div class="meta" style="margin-top:6px;">最終更新日 2025-10-13</div>
-          </div>
-
-          <div class="rating" aria-hidden="true">
-            <div class="score">
-              <div class="num">9.4</div>
-              <div class="label">満足</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="desc">
+<div class="card-footer">
+<a class="btn" href="#" role="button">価格確認</a>
+<img alt="Amazon ロゴ" class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"/>
+</div>
+</div>
+</div>
+</article>
+<article aria-label="商品4" class="product-card">
+<div class="ribbon" style="background:#30a7d9;">💪 健康維持</div>
+<div class="rank-circle">4</div>
+<div class="card-inner">
+<div class="thumb">
+<img alt="プロテインの画像" src="https://images.unsplash.com/photo-1571018931168-d06e2e28a559?w=800&amp;q=80&amp;auto=format&amp;fit=crop"/>
+</div>
+<div class="info">
+<div style="display:flex;align-items:flex-start;gap:10px;">
+<div style="flex:1;">
+<div class="title">ザバス ホエイプロテイン100 リッチショコラ味 100食分</div>
+<div class="meta" style="margin-top:6px;">最終更新日 2025-10-13</div>
+</div>
+<div aria-hidden="true" class="rating">
+<div class="score">
+<div class="num">9.4</div>
+<div class="label">満足</div>
+</div>
+</div>
+</div>
+<div class="desc">
           一人暮らしで不足しがちなタンパク質を手軽に補給。食事の置き換えや運動後に。
         </div>
-
-        <div class="card-footer">
-          <a class="btn" href="#" role="button">価格確認</a>
-          <img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon ロゴ">
-        </div>
-      </div>
-    </div>
-  </article>
-  <article class="product-card" aria-label="商品5">
-    <div class="ribbon" style="background:#0b5a86;">☕️ 大容量</div>
-    <div class="rank-circle">5</div>
-
-    <div class="card-inner">
-      <div class="thumb">
-        <img src="https://images.unsplash.com/photo-1628108154148-52c7104b2a8f?w=800&q=80&auto=format&fit=crop" alt="ドリップコーヒーの画像">
-      </div>
-
-      <div class="info">
-        <div style="display:flex;align-items:flex-start;gap:10px;">
-          <div style="flex:1;">
-            <div class="title">AGF ちょっと贅沢な珈琲店 レギュラーコーヒー 320g×3袋</div>
-            <div class="meta" style="margin-top:6px;">最終更新日 2025-10-12</div>
-          </div>
-
-          <div class="rating" aria-hidden="true">
-            <div class="score">
-              <div class="num">9.3</div>
-              <div class="label">高評価</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="desc">
+<div class="card-footer">
+<a class="btn" href="#" role="button">価格確認</a>
+<img alt="Amazon ロゴ" class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"/>
+</div>
+</div>
+</div>
+</article>
+<article aria-label="商品5" class="product-card">
+<div class="ribbon" style="background:#0b5a86;">☕️ 大容量</div>
+<div class="rank-circle">5</div>
+<div class="card-inner">
+<div class="thumb">
+<img alt="ドリップコーヒーの画像" src="https://images.unsplash.com/photo-1628108154148-52c7104b2a8f?w=800&amp;q=80&amp;auto=format&amp;fit=crop"/>
+</div>
+<div class="info">
+<div style="display:flex;align-items:flex-start;gap:10px;">
+<div style="flex:1;">
+<div class="title">AGF ちょっと贅沢な珈琲店 レギュラーコーヒー 320g×3袋</div>
+<div class="meta" style="margin-top:6px;">最終更新日 2025-10-12</div>
+</div>
+<div aria-hidden="true" class="rating">
+<div class="score">
+<div class="num">9.3</div>
+<div class="label">高評価</div>
+</div>
+</div>
+</div>
+<div class="desc">
           毎日のコーヒー代を節約できる大容量。ドリップやコーヒーメーカーで本格的な味を。
         </div>
-
-        <div class="card-footer">
-          <a class="btn" href="#" role="button">価格確認</a>
-          <img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon ロゴ">
-        </div>
-      </div>
-    </div>
-  </article>
-  <article class="product-card" aria-label="商品6">
-    <div class="ribbon" style="background:#777;">🍛 簡単調理</div>
-    <div class="rank-circle">6</div>
-
-    <div class="card-inner">
-      <div class="thumb">
-        <img src="https://images.unsplash.com/photo-1620684618218-1b22e177b94a?w=800&q=80&auto=format&fit=crop" alt="レトルトカレーの画像">
-      </div>
-
-      <div class="info">
-        <div style="display:flex;align-items:flex-start;gap:10px;">
-          <div style="flex:1;">
-            <div class="title">大塚食品 ボンカレーゴールド 辛口 5個パック×4箱</div>
-            <div class="meta" style="margin-top:6px;">最終更新日 2025-10-11</div>
-          </div>
-
-          <div class="rating" aria-hidden="true">
-            <div class="score">
-              <div class="num">9.2</div>
-              <div class="label">満足</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="desc">
+<div class="card-footer">
+<a class="btn" href="#" role="button">価格確認</a>
+<img alt="Amazon ロゴ" class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"/>
+</div>
+</div>
+</div>
+</article>
+<article aria-label="商品6" class="product-card">
+<div class="ribbon" style="background:#777;">🍛 簡単調理</div>
+<div class="rank-circle">6</div>
+<div class="card-inner">
+<div class="thumb">
+<img alt="レトルトカレーの画像" src="https://images.unsplash.com/photo-1620684618218-1b22e177b94a?w=800&amp;q=80&amp;auto=format&amp;fit=crop"/>
+</div>
+<div class="info">
+<div style="display:flex;align-items:flex-start;gap:10px;">
+<div style="flex:1;">
+<div class="title">大塚食品 ボンカレーゴールド 辛口 5個パック×4箱</div>
+<div class="meta" style="margin-top:6px;">最終更新日 2025-10-11</div>
+</div>
+<div aria-hidden="true" class="rating">
+<div class="score">
+<div class="num">9.2</div>
+<div class="label">満足</div>
+</div>
+</div>
+</div>
+<div class="desc">
           湯煎またはレンジで温めるだけ。賞味期限が長く、献立に困ったときのために常備しておきたい。
         </div>
-
-        <div class="card-footer">
-          <a class="btn" href="#" role="button">価格確認</a>
-          <img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon ロゴ">
-        </div>
-      </div>
-    </div>
-  </article>
-  <article class="product-card" aria-label="商品7">
-    <div class="ribbon" style="background:#cc0000;">🍅 栄養満点</div>
-    <div class="rank-circle">7</div>
-
-    <div class="card-inner">
-      <div class="thumb">
-        <img src="https://images.unsplash.com/photo-1596707323533-be721f579893?w=800&q=80&auto=format&fit=crop" alt="野菜ジュースの画像">
-      </div>
-
-      <div class="info">
-        <div style="display:flex;align-items:flex-start;gap:10px;">
-          <div style="flex:1;">
-            <div class="title">カゴメ 野菜一日これ一本 200ml×24本</div>
-            <div class="meta" style="margin-top:6px;">最終更新日 2025-10-10</div>
-          </div>
-
-          <div class="rating" aria-hidden="true">
-            <div class="score">
-              <div class="num">9.0</div>
-              <div class="label">良い</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="desc">
+<div class="card-footer">
+<a class="btn" href="#" role="button">価格確認</a>
+<img alt="Amazon ロゴ" class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"/>
+</div>
+</div>
+</div>
+</article>
+<article aria-label="商品7" class="product-card">
+<div class="ribbon" style="background:#cc0000;">🍅 栄養満点</div>
+<div class="rank-circle">7</div>
+<div class="card-inner">
+<div class="thumb">
+<img alt="野菜ジュースの画像" src="https://images.unsplash.com/photo-1596707323533-be721f579893?w=800&amp;q=80&amp;auto=format&amp;fit=crop"/>
+</div>
+<div class="info">
+<div style="display:flex;align-items:flex-start;gap:10px;">
+<div style="flex:1;">
+<div class="title">カゴメ 野菜一日これ一本 200ml×24本</div>
+<div class="meta" style="margin-top:6px;">最終更新日 2025-10-10</div>
+</div>
+<div aria-hidden="true" class="rating">
+<div class="score">
+<div class="num">9.0</div>
+<div class="label">良い</div>
+</div>
+</div>
+</div>
+<div class="desc">
           自炊が面倒な日でも野菜の栄養を補える。冷蔵庫に入れずストックできる紙パックが便利。
         </div>
-
-        <div class="card-footer">
-          <a class="btn" href="#" role="button">価格確認</a>
-          <img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon ロゴ">
-        </div>
-      </div>
-    </div>
-  </article>
-  <article class="product-card" aria-label="商品8">
-    <div class="ribbon" style="background:#555;">🐟 和食定番</div>
-    <div class="rank-circle">8</div>
-
-    <div class="card-inner">
-      <div class="thumb">
-        <img src="https://images.unsplash.com/photo-1549419163-f187d90d8050?w=800&q=80&auto=format&fit=crop" alt="缶詰の画像">
-      </div>
-
-      <div class="info">
-        <div style="display:flex;align-items:flex-start;gap:10px;">
-          <div style="flex:1;">
-            <div class="title">いなば食品 サバ缶 水煮 24缶セット</div>
-            <div class="meta" style="margin-top:6px;">最終更新日 2025-10-09</div>
-          </div>
-
-          <div class="rating" aria-hidden="true">
-            <div class="score">
-              <div class="num">8.9</div>
-              <div class="label">まずまず</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="desc">
+<div class="card-footer">
+<a class="btn" href="#" role="button">価格確認</a>
+<img alt="Amazon ロゴ" class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"/>
+</div>
+</div>
+</div>
+</article>
+<article aria-label="商品8" class="product-card">
+<div class="ribbon" style="background:#555;">🐟 和食定番</div>
+<div class="rank-circle">8</div>
+<div class="card-inner">
+<div class="thumb">
+<img alt="缶詰の画像" src="https://images.unsplash.com/photo-1549419163-f187d90d8050?w=800&amp;q=80&amp;auto=format&amp;fit=crop"/>
+</div>
+<div class="info">
+<div style="display:flex;align-items:flex-start;gap:10px;">
+<div style="flex:1;">
+<div class="title">いなば食品 サバ缶 水煮 24缶セット</div>
+<div class="meta" style="margin-top:6px;">最終更新日 2025-10-09</div>
+</div>
+<div aria-hidden="true" class="rating">
+<div class="score">
+<div class="num">8.9</div>
+<div class="label">まずまず</div>
+</div>
+</div>
+</div>
+<div class="desc">
           オメガ3脂肪酸も摂れる健康食品。そのまま食べても、味噌汁やパスタの具材にも使える万能缶詰。
         </div>
-
-        <div class="card-footer">
-          <a class="btn" href="#" role="button">価格確認</a>
-          <img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon ロゴ">
-        </div>
-      </div>
-    </div>
-  </article>
-  <article class="product-card" aria-label="商品9">
-    <div class="ribbon" style="background:#f2a654;">🍞 朝食に</div>
-    <div class="rank-circle">9</div>
-
-    <div class="card-inner">
-      <div class="thumb">
-        <img src="https://images.unsplash.com/photo-1543781744-f174e9e51c86?w=800&q=80&auto=format&fit=crop" alt="グラノーラの画像">
-      </div>
-
-      <div class="info">
-        <div style="display:flex;align-items:flex-start;gap:10px;">
-          <div style="flex:1;">
-            <div class="title">カルビー フルグラ 800g×6袋セット</div>
-            <div class="meta" style="margin-top:6px;">最終更新日 2025-10-08</div>
-          </div>
-
-          <div class="rating" aria-hidden="true">
-            <div class="score">
-              <div class="num">8.7</div>
-              <div class="label">許容範囲</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="desc">
+<div class="card-footer">
+<a class="btn" href="#" role="button">価格確認</a>
+<img alt="Amazon ロゴ" class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"/>
+</div>
+</div>
+</div>
+</article>
+<article aria-label="商品9" class="product-card">
+<div class="ribbon" style="background:#f2a654;">🍞 朝食に</div>
+<div class="rank-circle">9</div>
+<div class="card-inner">
+<div class="thumb">
+<img alt="グラノーラの画像" src="https://images.unsplash.com/photo-1543781744-f174e9e51c86?w=800&amp;q=80&amp;auto=format&amp;fit=crop"/>
+</div>
+<div class="info">
+<div style="display:flex;align-items:flex-start;gap:10px;">
+<div style="flex:1;">
+<div class="title">カルビー フルグラ 800g×6袋セット</div>
+<div class="meta" style="margin-top:6px;">最終更新日 2025-10-08</div>
+</div>
+<div aria-hidden="true" class="rating">
+<div class="score">
+<div class="num">8.7</div>
+<div class="label">許容範囲</div>
+</div>
+</div>
+</div>
+<div class="desc">
           忙しい朝でも牛乳をかけるだけで栄養満点の食事が完了。大袋のまとめ買いで割引率が高い。
         </div>
-
-        <div class="card-footer">
-          <a class="btn" href="#" role="button">価格確認</a>
-          <img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon ロゴ">
-        </div>
-      </div>
-    </div>
-  </article>
-  <article class="product-card" aria-label="商品10">
-    <div class="ribbon" style="background:#30a7d9;">🌱 料理ベース</div>
-    <div class="rank-circle">10</div>
-
-    <div class="card-inner">
-      <div class="thumb">
-        <img src="https://images.unsplash.com/photo-1510926593503-b7787c8008a0?w=800&q=80&auto=format&fit=crop" alt="冷凍うどんの画像">
-      </div>
-
-      <div class="info">
-        <div style="display:flex;align-items:flex-start;gap:10px;">
-          <div style="flex:1;">
-            <div class="title">冷凍讃岐うどん 5食入り×6パック (計30食)</div>
-            <div class="meta" style="margin-top:6px;">最終更新日 2025-10-07</div>
-          </div>
-
-          <div class="rating" aria-hidden="true">
-            <div class="score">
-              <div class="num">8.5</div>
-              <div class="label">妥協点</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="desc">
+<div class="card-footer">
+<a class="btn" href="#" role="button">価格確認</a>
+<img alt="Amazon ロゴ" class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"/>
+</div>
+</div>
+</div>
+</article>
+<article aria-label="商品10" class="product-card">
+<div class="ribbon" style="background:#30a7d9;">🌱 料理ベース</div>
+<div class="rank-circle">10</div>
+<div class="card-inner">
+<div class="thumb">
+<img alt="冷凍うどんの画像" src="https://images.unsplash.com/photo-1510926593503-b7787c8008a0?w=800&amp;q=80&amp;auto=format&amp;fit=crop"/>
+</div>
+<div class="info">
+<div style="display:flex;align-items:flex-start;gap:10px;">
+<div style="flex:1;">
+<div class="title">冷凍讃岐うどん 5食入り×6パック (計30食)</div>
+<div class="meta" style="margin-top:6px;">最終更新日 2025-10-07</div>
+</div>
+<div aria-hidden="true" class="rating">
+<div class="score">
+<div class="num">8.5</div>
+<div class="label">妥協点</div>
+</div>
+</div>
+</div>
+<div class="desc">
           ストックしておけば、煮込みうどん、ぶっかけなど様々な料理に瞬時に使える万能食材。
         </div>
+<div class="card-footer">
+<a class="btn" href="#" role="button">価格確認</a>
+<img alt="Amazon ロゴ" class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"/>
+</div>
+</div>
+</div>
+</article>
+</div>
+</div>
+</div>
 
-        <div class="card-footer">
-          <a class="btn" href="#" role="button">価格確認</a>
-          <img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon ロゴ">
-        </div>
-      </div>
-    </div>
-  </article>
-  </div>
 
+
+
+
+
+<script src="hozon_script.js"></script>
 </body>
 </html>
-```
