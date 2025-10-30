@@ -491,3 +491,14 @@ h2 {
     text-align: center;
 }
 
+.display {
+  display: flex;
+}
+
+.display_right {
+  width: 80%;
+}
+
+.display_left {
+  width: 20%;
+}
