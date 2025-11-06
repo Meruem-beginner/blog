@@ -12,7 +12,7 @@ body { font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "メ�
   box-shadow: 0 6px 18px rgba(15,20,30,0.06);
   overflow: hidden;
   position: relative;
-  padding: 14px;
+  padding: 5px;
 }
 
 /* リボン（左上） */
