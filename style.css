@@ -3,7 +3,7 @@
 body { font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "メイリオ", sans-serif; background:#f5f6f8; color:#111; line-height:1.4; padding:16px; }
 
 /* カード全体のコンテナ */
-.product-list { display: grid; gap:16px; }
+.product-list { display: grid; gap:5px; }
 
 /* 単一カード */
 .product-card {
