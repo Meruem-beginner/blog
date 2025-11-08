@@ -1,64 +1,193 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>就活まとめ - My Blog</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    body { font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif; margin:0; padding:0; background:#080808; color:#fff;}
-    .wrap { max-width:900px; margin:30px auto; padding:18px; }
-    h1 { margin-bottom:6px; }
-    .back { margin-top:12px; display:inline-block; color:#aaa; text-decoration:none;}
-    .section { background:#0f0f0f; padding:14px; border-radius:10px; margin-top:16px; }
-    .job-list { list-style:none; padding:0; margin:0; display:grid; gap:10px; }
-    .job { padding:10px; border-radius:8px; background:#111; }
-    .job a { color:#fff; text-decoration:none; font-weight:600; }
-    .resource { display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
-    .resource a { padding:8px 10px; border-radius:8px; background:#1e88e5; color:white; text-decoration:none; }
-  </style>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link rel="icon" type="image/x-icon" href='img/LiB_logo.png' />
+<title>LIB</title>
+<link href="style.css" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
 </head>
 <body>
-  <div class="wrap">
-    <h1>就活まとめ</h1>
-    <p class="small">企業選び・面接対策・おすすめの持ち物など、就活で便利なリンク集とおすすめ商品を載せています。</p>
-    <a class="back" href="./HOME.html">← ホームへ戻る</a>
+<header>
+<div class="logo">
+<a href="https://example.com"><img height="40" src="img/LiB_header.png" width="70"/></a>
+</div>
+</header>
 
-    <div class="section">
-      <h2>おすすめの持ち物（Amazon例）</h2>
-      <div style="display:grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap:12px; margin-top:10px;">
-        <div class="product">
-          <img src="img/sample1.jpg" alt="イヤホン" style="width:100%; height:120px; object-fit:cover; border-radius:6px;">
-          <div style="font-weight:700; margin-top:8px;">ノイズキャンセルイヤホン</div>
-          <div class="small">面接前にリラックスしたい時に便利。</div>
-          <a class="btn" href="https://www.amazon.co.jp/dp/PLACEHOLDER" target="_blank" rel="noopener">Amazonで見る</a>
+
+<div id="vote-container">
+    <h2>🎉 あなたが選ぶ人気ジャンルは？ (複数選択可) 🎉</h2>
+
+    <div id="vote-form">
         </div>
 
-        <div class="product">
-          <img src="img/sample4.jpg" alt="スーツケース" style="width:100%; height:120px; object-fit:cover; border-radius:6px;">
-          <div style="font-weight:700; margin-top:8px;">小型スーツケース</div>
-          <div class="small">遠方面接や説明会の移動に。</div>
-          <a class="btn" href="https://www.amazon.co.jp/dp/PLACEHOLDER" target="_blank" rel="noopener">Amazonで見る</a>
+    <button id="submit-vote">投票を決定する</button>
+
+    <div id="vote-message" class="vote-message" style="display: none;">
+        投票ありがとうございます！現在の集計結果です。
+    </div>
+
+    <div id="results-container">
         </div>
-      </div>
+</div>
+
+<h1 style="font-size:18px;margin-bottom:12px;">Amazonで買える！一人暮らしにおすすめの食べ物・飲み物ベスト10</h1>
+<div class="product-list">
+<div class="container">
+<div class="main-content">
+
+
+
+<div class="product-list">
+  <div class="container">
+    <div class="main-content">
+
+<!-- 商品1 -->
+<article class="product-card">
+  <div class="ribbon">👔 ノーアイロン</div>
+  <div class="rank-circle">1</div>
+  <div class="card-inner">
+    <div class="thumb">
+      <img alt="ワイシャツ" src="https://example.com/images/shirt.jpg"/>
     </div>
-
-    <div class="section">
-      <h2>求人・インターン探しのコツ</h2>
-      <ul class="job-list">
-        <li class="job"><strong>説明会は積極的に</strong> — 会社の雰囲気を肌で感じるのが大切。</li>
-        <li class="job"><strong>エントリーは早めに</strong> — 人気企業は枠が早く埋まります。</li>
-        <li class="job"><strong>履歴書はテンプレを作る</strong> — 直前に慌てないために1つテンプレを用意。</li>
-      </ul>
-
-      <div style="margin-top:12px;">
-        <a class="resource" href="./index.html">Amazonおすすめ（ブログトップ）</a>
-        <a class="resource" href="./profile.html">プロフィール</a>
+    <div class="info">
+      <div style="display:flex;gap:10px;">
+        <div style="flex:1;">
+          <div class="title">[Enlision] ZL0001「ノーアイロン」形態安定 抗菌防臭 ワイシャツ メンズ 長袖</div>
+          <div class="meta">最終更新日 2025-11-03</div>
+        </div>
+        <div class="rating"><div class="score"><div class="num">9.9</div><div class="label">卓越した</div></div></div>
       </div>
+      <div class="desc">速乾・形態安定で冠婚葬祭にも対応。レギュラーフィットで着心地抜群。</div>
+      <div class="card-footer"><a class="btn" href="#">価格確認</a><img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"/></div>
     </div>
-
   </div>
+</article>
 
-  <script src="script.js"></script>
+<!-- 商品2 -->
+<article class="product-card">
+  <div class="ribbon" style="background:#f2a654;">👜 ビジネスバッグ</div>
+  <div class="rank-circle">2</div>
+  <div class="card-inner">
+    <div class="thumb">
+      <img alt="ビジネスバッグ" src="https://example.com/images/bag.jpg"/>
+    </div>
+    <div class="info">
+      <div style="display:flex;gap:10px;">
+        <div style="flex:1;">
+          <div class="title">[グレヴィオ] 勝ち確バッグ 一流の鞄職人が作る ビジネスバッグ 大容量 15.6インチPC対応</div>
+          <div class="meta">最終更新日 2025-11-03</div>
+        </div>
+        <div class="rating"><div class="score"><div class="num">9.8</div><div class="label">とても良い</div></div></div>
+      </div>
+      <div class="desc">撥水・自立・2way仕様。出張や就活に最適な大容量バッグ。</div>
+      <div class="card-footer"><a class="btn" href="#">価格確認</a><img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"/></div>
+    </div>
+  </div>
+</article>
+
+<!-- 商品3 -->
+<article class="product-card">
+  <div class="ribbon" style="background:#555;">🎩 スーツセット</div>
+  <div class="rank-circle">3</div>
+  <div class="card-inner">
+    <div class="thumb">
+      <img alt="スーツ" src="https://example.com/images/suit.jpg"/>
+    </div>
+    <div class="info">
+      <div style="display:flex;gap:10px;">
+        <div style="flex:1;">
+          <div class="title">[22 Wear] スーツ メンズ 上下セット 二つボタン フォーマルスーツ</div>
+          <div class="meta">最終更新日 2025-11-03</div>
+        </div>
+        <div class="rating"><div class="score"><div class="num">9.7</div><div class="label">優秀</div></div></div>
+      </div>
+      <div class="desc">就職・礼服・結婚式・パーティーに対応する万能スーツセット。</div>
+      <div class="card-footer"><a class="btn" href="#">価格確認</a><img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"/></div>
+    </div>
+  </div>
+</article>
+
+<!-- 商品4 -->
+<article class="product-card">
+  <div class="ribbon" style="background:#30a7d9;">👔 ネクタイ</div>
+  <div class="rank-circle">4</div>
+  <div class="card-inner">
+    <div class="thumb">
+      <img alt="ネクタイ" src="https://example.com/images/tie.jpg"/>
+    </div>
+    <div class="info">
+      <div style="display:flex;gap:10px;">
+        <div style="flex:1;">
+          <div class="title">HAVILAH MODE ネクタイ ロングタイ ウォッシャブル 洗える ビジネス 就活</div>
+          <div class="meta">最終更新日 2025-11-03</div>
+        </div>
+        <div class="rating"><div class="score"><div class="num">9.6</div><div class="label">満足</div></div></div>
+      </div>
+      <div class="desc">洗える素材で清潔感を維持。就活やビジネスシーンに最適。</div>
+      <div class="card-footer"><a class="btn" href="#">価格確認</a><img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"/></div>
+    </div>
+  </div>
+</article>
+
+<!-- 商品5 -->
+<article class="product-card">
+  <div class="ribbon" style="background:#0b5a86;">💼 名刺入れ</div>
+  <div class="rank-circle">5</div>
+  <div class="card-inner">
+    <div class="thumb">
+      <img alt="名刺入れ" src="https://example.com/images/cardcase.jpg"/>
+    </div>
+    <div class="info">
+      <div style="display:flex;gap:10px;">
+        <div style="flex:1;">
+          <div class="title">[Snughom] 名刺入れ 大容量 マグネット開閉式 高級合成皮革</div>
+          <div class="meta">最終更新日 2025-11-03</div>
+        </div>
+        <div class="rating"><div class="score"><div class="num">9.5</div><div class="label">高評価</div></div></div>
+      </div>
+      <div class="desc">就活・面接必須アイテム。カード多重収納層でビジネスに便利。</div>
+      <div class="card-footer"><a class="btn" href="#">価格確認</a><img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"/></div>
+    </div>
+  </div>
+</article>
+
+<!-- 商品6 -->
+<article class="product-card">
+  <div class="ribbon" style="background:#777;">👞 ビジネスシューズ</div>
+  <div class="rank-circle">6</div>
+  <div class="card-inner">
+    <div class="thumb">
+      <img alt="ビジネスシューズ" src="https://example.com/images/shoes.jpg"/>
+    </div>
+    <div class="info">
+      <div style="display:flex;gap:10px;">
+        <div style="flex:1;">
+          <div class="title">[Poerkan] ビジネスシューズ メンズ 走れる 本革 ビジネススニーカー</div>
+          <div class="meta">最終更新日 2025-11-03</div>
+        </div>
+        <div class="rating"><div class="score"><div class="num">9.3</div><div class="label">満足</div></div></div>
+      </div>
+      <div class="desc">軽量で歩きやすく、通気性抜群。25.0cm～対応の紳士靴。</div>
+      <div class="card-footer"><a class="btn" href="#">価格確認</a><img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"/></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="script.js"></script>
 </body>
 </html>
