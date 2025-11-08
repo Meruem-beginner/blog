@@ -32,13 +32,13 @@
       <div class="card">
         <div>ブログトップ</div>
         <!-- index.html に飛ぶ -->
-        <a class="btn" href="./index.html">Amazonおすすめを見る（index.html）</a>
+        <a class="btn" href="index.html">Amazonおすすめを見る（index.html）</a>
       </div>
 
       <div class="card">
         <div>就活まとめ</div>
         <!-- shukatu.html に飛ぶ -->
-        <a class="btn" href="./shukatu.html">就活情報を見る</a>
+        <a class="btn" href="shukatu.html">就活情報を見る</a>
       </div>
 
       <div class="card">
