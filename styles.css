@@ -1,0 +1,69 @@
+body {
+  margin: 0;
+  font-family: "Helvetica", "Arial", sans-serif;
+  background-color: #fafafa;
+  color: #333;
+}
+
+/* ヘッダー */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  background-color: #333;
+  color: white;
+}
+
+.navbar .menu a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+.navbar .menu a:hover {
+  text-decoration: underline;
+}
+
+/* メイン */
+.title {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 2.5em;
+}
+
+/* カードエリア */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+}
+
+/* フッター */
+.footer {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 20px;
+  background-color: #222;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
