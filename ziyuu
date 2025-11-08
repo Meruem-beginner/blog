@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>トップページ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ヘッダー -->
+  <header class="navbar">
+    <div class="logo">ロゴ</div>
+    <nav class="menu">
+      <a href="#">ホーム</a>
+      <a href="#">就活</a>
+      <a href="#">ブログ</a>
+      <a href="#">お問い合わせ</a>
+    </nav>
+  </header>
+
+  <!-- メイン -->
+  <main>
+    <h1 class="title">トップ</h1>
+
+    <section class="cards">
+      <div class="card">カード1</div>
+      <div class="card">カード2</div>
+      <div class="card">カード3</div>
+      <div class="card">カード4</div>
+    </section>
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <a href="#">リンク1</a>
+    <a href="#">リンク2</a>
+    <a href="#">リンク3</a>
+    <a href="#">リンク4</a>
+  </footer>
+
+</body>
+</html>
