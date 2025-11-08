@@ -1,79 +1,282 @@
-<!doctype html>
+
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>HOME - My Blog</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    /* 軽い上書きスタイル（必要なら style.css にまとめてください） */
-    body { font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif; margin:0; padding:0; background:#0b0b0b; color:#fff;}
-    .container { max-width:900px; margin:40px auto; padding:20px; }
-    h1 { margin-bottom:8px; }
-    .nav-cards { display:flex; gap:12px; flex-wrap:wrap; margin-top:20px;}
-    .card {
-      background:#111; padding:18px; border-radius:10px; box-shadow: 0 2px 8px rgba(0,0,0,0.6);
-      min-width:200px; flex:1 1 200px; text-align:center;
-    }
-    .card a { color:#fff; text-decoration:none; font-weight:600; display:block; }
-    .btn { display:inline-block; margin-top:10px; padding:8px 12px; border-radius:8px; background:#1976d2; color:white; text-decoration:none; }
-    .amazon-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:12px; margin-top:20px;}
-    .product { background:#0f0f0f; padding:12px; border-radius:8px; text-align:left; }
-    .product img { width:100%; height:140px; object-fit:cover; border-radius:6px; }
-    .small { font-size:0.9rem; color:#aaa; margin-top:6px;}
-  </style>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link rel="icon" type="image/x-icon" href='img/LiB_logo.png' />
+<title>LIB</title>
+<link href="style.css" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
 </head>
 <body>
+<header>
+<div class="logo">
+<a href="https://example.com"><img height="40" src="img/LiB_header.png" width="70"/></a>
+</div>
+</header>
+
+
+<div id="vote-container">
+    <h2>🎉 あなたが選ぶ人気ジャンルは？ (複数選択可) 🎉</h2>
+
+    <div id="vote-form">
+        </div>
+
+    <button id="submit-vote">投票を決定する</button>
+
+    <div id="vote-message" class="vote-message" style="display: none;">
+        投票ありがとうございます！現在の集計結果です。
+    </div>
+
+    <div id="results-container">
+        </div>
+</div>
+
+<h1 style="font-size:18px;margin-bottom:12px;">Amazonで買える！一人暮らしにおすすめの食べ物・飲み物ベスト10</h1>
+<div class="product-list">
+<div class="container">
+<div class="main-content">
+
+
+
+<div class="product-list">
   <div class="container">
-    <h1>HOME</h1>
-    <p>ここはホームページです。下のボタンからブログトップ（index）や就活ページに移動できます。</p>
+    <div class="main-content">
 
-    <div class="nav-cards">
-      <div class="card">
-        <div>ブログトップ</div>
-        <!-- index.html に飛ぶ -->
-        <a class="btn" href="index.html">Amazonおすすめを見る（index.html）</a>
-      </div>
-
-      <div class="card">
-        <div>就活まとめ</div>
-        <!-- shukatu.html に飛ぶ -->
-        <a class="btn" href="shukatu.html">就活情報を見る</a>
-      </div>
-
-      <div class="card">
-        <div>プロフィール</div>
-        <a class="btn" href="./profile.html">プロフィール（例）</a>
-      </div>
+<!-- 商品1 -->
+<article class="product-card">
+  <div class="ribbon">🎁 季節限定</div>
+  <div class="rank-circle">1</div>
+  <div class="card-inner">
+    <div class="thumb">
+      <img alt="ワッフルケーキ" src="https://example.com/images/waffle.jpg"/>
     </div>
-
-    <h2 style="margin-top:28px;">ピックアップ：Amazonおすすめ（サンプル）</h2>
-    <div class="amazon-grid">
-      <div class="product">
-        <img src="img/sample1.jpg" alt="商品1">
-        <div style="font-weight:700; margin-top:8px;">ワイヤレスイヤホン（例）</div>
-        <div class="small">手頃な価格で高評価。通勤・通学に最適。</div>
-        <!-- 実際はご自身のAmazonリンクに置き換えてください -->
-        <a class="btn" href="https://www.amazon.co.jp/dp/PLACEHOLDER" target="_blank" rel="noopener">Amazonで見る</a>
+    <div class="info">
+      <div style="display:flex;gap:10px;">
+        <div style="flex:1;">
+          <div class="title">R.L ワッフル ケーキ 冷凍 20個</div>
+          <div class="meta">最終更新日 2025-11-03</div>
+        </div>
+        <div class="rating"><div class="score"><div class="num">9.9</div><div class="label">卓越した</div></div></div>
       </div>
-
-      <div class="product">
-        <img src="img/sample2.jpg" alt="商品2">
-        <div style="font-weight:700; margin-top:8px;">モバイルバッテリー（例）</div>
-        <div class="small">大容量で安心。USB-C対応。</div>
-        <a class="btn" href="https://www.amazon.co.jp/dp/PLACEHOLDER" target="_blank" rel="noopener">Amazonで見る</a>
-      </div>
-
-      <div class="product">
-        <img src="img/sample3.jpg" alt="商品3">
-        <div style="font-weight:700; margin-top:8px;">PCスタンド（例）</div>
-        <div class="small">ノートPCの熱対策、姿勢改善に。</div>
-        <a class="btn" href="https://www.amazon.co.jp/dp/PLACEHOLDER" target="_blank" rel="noopener">Amazonで見る</a>
-      </div>
+      <div class="desc">季節感あふれる彩りとふわふわ食感。ギフトにもぴったりな手提げ袋付き。</div>
+      <div class="card-footer"><a class="btn" href="https://amzn.to/3JHMkcP">価格確認</a><img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"/></div>
     </div>
-
   </div>
+</article>
 
-  <script src="script.js"></script>
+<!-- 商品2 -->
+<article class="product-card">
+  <div class="ribbon" style="background:#f2a654;">🌾 腸活サポート</div>
+  <div class="rank-circle">2</div>
+  <div class="card-inner">
+    <div class="thumb">
+      <img alt="オートミールバー" src="https://example.com/images/amagura.jpg"/>
+    </div>
+    <div class="info">
+      <div style="display:flex;gap:10px;">
+        <div style="flex:1;">
+          <div class="title">AMAGURA まるごと甘酒 オートミールバー 10個</div>
+          <div class="meta">最終更新日 2025-11-03</div>
+        </div>
+        <div class="rating"><div class="score"><div class="num">9.8</div><div class="label">とても良い</div></div></div>
+      </div>
+      <div class="desc">砂糖不使用・グルテンフリーで腸活にも最適。低糖質で置き換えにも◎。</div>
+      <div class="card-footer"><a class="btn" href="https://amzn.to/3Xdv0PW">価格確認</a><img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"/></div>
+    </div>
+  </div>
+</article>
+
+<!-- 商品3 -->
+<article class="product-card">
+  <div class="ribbon" style="background:#555;">🍪 定番人気</div>
+  <div class="rank-circle">3</div>
+  <div class="card-inner">
+    <div class="thumb">
+      <img alt="ロイズクッキー" src="https://example.com/images/royce.jpg"/>
+    </div>
+    <div class="info">
+      <div style="display:flex;gap:10px;">
+        <div style="flex:1;">
+          <div class="title">ROYCE' バトンクッキー 2種詰合せ 50枚</div>
+          <div class="meta">最終更新日 2025-11-03</div>
+        </div>
+        <div class="rating"><div class="score"><div class="num">9.7</div><div class="label">優秀</div></div></div>
+      </div>
+      <div class="desc">サクサク食感とチョコの絶妙なバランス。贈り物にも喜ばれる定番スイーツ。</div>
+      <div class="card-footer"><a class="btn" href="https://amzn.to/4qDcVZe">価格確認</a><img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"/></div>
+    </div>
+  </div>
+</article>
+
+<!-- 商品4 -->
+<article class="product-card">
+  <div class="ribbon" style="background:#30a7d9;">🍫 高級感</div>
+  <div class="rank-circle">4</div>
+  <div class="card-inner">
+    <div class="thumb">
+      <img alt="ショーコラ" src="https://example.com/images/vanillabeans.jpg"/>
+    </div>
+    <div class="info">
+      <div style="display:flex;gap:10px;">
+        <div style="flex:1;">
+          <div class="title">VANILLABEANS ショーコラ 4個入</div>
+          <div class="meta">最終更新日 2025-11-03</div>
+        </div>
+        <div class="rating"><div class="score"><div class="num">9.6</div><div class="label">満足</div></div></div>
+      </div>
+      <div class="desc">濃厚チョコとサクサククッキーの贅沢な組み合わせ。ギフトにも最適。</div>
+      <div class="card-footer"><a class="btn" href="https://amzn.to/47m6dzd">価格確認</a><img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"/></div>
+    </div>
+  </div>
+</article>
+
+<!-- 商品5 -->
+<article class="product-card">
+  <div class="ribbon" style="background:#0b5a86;">🎉 お祝いに最適</div>
+  <div class="rank-circle">5</div>
+  <div class="card-inner">
+    <div class="thumb">
+      <img alt="キハチ アソート" src="https://example.com/images/kihachi.jpg"/>
+    </div>
+    <div class="info">
+      <div style="display:flex;gap:10px;">
+        <div style="flex:1;">
+          <div class="title">キハチ アソート BOX M 6種10個入</div>
+          <div class="meta">最終更新日 2025-11-03</div>
+        </div>
+        <div class="rating"><div class="score"><div class="num">9.5</div><div class="label">高評価</div></div></div>
+      </div>
+      <div class="desc">焼菓子の詰め合わせで、内祝い・お返し・お祝いにぴったりな上品ギフト。</div>
+      <div class="card-footer"><a class="btn" href="https://amzn.to/4hQ2r4L">価格確認</a><img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"/></div>
+    </div>
+  </div>
+</article>
+
+<!-- 商品6 -->
+<article class="product-card">
+  <div class="ribbon" style="background:#777;">🍂 和の贅沢</div>
+  <div class="rank-circle">6</div>
+  <div class="card-inner">
+    <div class="thumb">
+      <img alt="四季の十二撰" src="https://example.com/images/shiki.jpg"/>
+    </div>
+    <div class="info">
+      <div style="display:flex;gap:10px;">
+        <div style="flex:1;">
+          <div class="title">風味絶佳.山陰 四季の十二撰 秋季限定</div>
+          <div class="meta">最終更新日 2025-11-03</div>
+        </div>
+        <div class="rating"><div class="score"><div class="num">9.3</div><div class="label">満足</div></div></div>
+      </div>
+      <div class="desc">風呂敷包みの上生菓子詰合せ。季節を感じる和菓子ギフトとして人気。</div>
+      <div class="card-footer"><a class="btn" href="https://amzn.to/4hCotb2">価格確認</a><img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"/></div>
+    </div>
+  </div>
+</article>
+
+<!-- 商品7 -->
+<article class="product-card">
+  <div class="ribbon" style="background:#cc0000;">🥜 ナッツの贅沢</div>
+  <div class="rank-circle">7</div>
+  <div class="card-inner">
+    <div class="thumb">
+      <img alt="ナッツショコラータ" src="https://example.com/images/nuts.jpg"/>
+    </div>
+    <div class="info">
+      <div style="display:flex;gap:10px;">
+        <div style="flex:1;">
+          <div class="title">贅沢ナッツショコラータ 4種×3袋</div>
+          <div class="meta">最終更新日 2025-11-03</div>
+        </div>
+        <div class="rating"><div class="score"><div class="num">9.2</div><div class="label">良い</div></div></div>
+      </div>
+      <div class="desc">アーモンド・ピーカン・カシューナッツなどを贅沢に使った高級チョコ菓子。</div>
+      <div class="card-footer"><a class="btn" href="https://amzn.to/4nCsDBd">価格確認</a><img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"/></div>
+    </div>
+  </div>
+</article>
+
+<!-- 商品8 -->
+<article class="product-card">
+  <div class="ribbon" style="background:#f2a654;">🍡 老舗の味</div>
+  <div class="rank-circle">8</div>
+  <div class="card-inner">
+    <div class="thumb">
+      <img alt="とらや羊羹" src="https://example.com/images/toraya.jpg"/>
+    </div>
+    <div class="info">
+      <div style="display:flex;gap:10px;">
+        <div style="flex:1;">
+          <div class="title">とらや 小形羊羹 10本入</div>
+          <div class="meta">最終更新日 2025-11-03</div>
+        </div>
+        <div class="rating"><div class="score"><div class="num">9.0</div><div class="label">まずまず</div></div></div>
+      </div>
+      <div class="desc">伝統の味を手軽に楽しめる小形サイズ。贈答用にも人気の和菓子。</div>
+      <div class="card-footer"><a class="btn" href="https://amzn.to/4hI5FXV">価格確認</a><img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"/></div>
+    </div>
+  </div>
+</article>
+
+<!-- 商品9 -->
+<article class="product-card">
+  <div class="ribbon" style="background:#555;">🙏 感謝の気持ち</div>
+  <div class="rank-circle">9</div>
+  <div class="card-inner">
+    <div class="thumb">
+      <img alt="退職ギフト" src="https://example.com/images/kazaris.jpg"/>
+    </div>
+    <div class="info">
+      <div style="display:flex;gap:10px;">
+        <div style="flex:1;">
+          <div class="title">KAZARIS 退職 お菓子 詰め合わせ 20個</div>
+          <div class="meta">最終更新日 2025-11-03</div>
+        </div>
+        <div class="rating"><div class="score"><div class="num">8.8</div><div class="label">許容範囲</div></div></div>
+      </div>
+      <div class="desc">「お世話になりました」の気持ちを伝えるプチギフト。個包装で配りやすい。</div>
+      <div class="card-footer"><a class="btn" href="https://amzn.to/47lLdIZ">価格確認</a><img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"/></div>
+    </div>
+  </div>
+</article>
+
+<!-- 商品10 -->
+<article class="product-card">
+  <div class="ribbon" style="background:#30a7d9;">🍁 東京土産</div>
+  <div class="rank-circle">10</div>
+  <div class="card-inner">
+    <div class="thumb">
+      <img alt="メープルバタークッキー" src="https://example.com/images/maplemania.jpg"/>
+    </div>
+    <div class="info">
+      <div style="display:flex;gap:10px;">
+        <div style="flex:1;">
+          <div class="title">メープルマニア メープルバタークッキー 9枚入</div>
+          <div class="meta">最終更新日 2025-11-03</div>
+        </div>
+        <div class="rating"><div class="score"><div class="num">8.7</div><div class="label">妥協点</div></div></div>
+      </div>
+      <div class="desc">東京土産の定番。香ばしいメープルの香りとサクサク食感がクセになる。</div>
+      <div class="card-footer"><a class="btn" href="https://amzn.to/4qGmk24">価格確認</a><img class="store-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"/></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="script.js"></script>
 </body>
 </html>
